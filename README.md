@@ -1,8 +1,25 @@
 # endomondo-json-cleaner
 
-Converts Endomondo's horrible JSON structure to something more usable. Can optionally be further converted to camel case.
+Converts Endomondo's horrible JSON structure to something more usable.
 
-## Example
+## Install
+The usual way:
+
+`npm install endomondo-json-cleaner`
+
+`yarn add endomondo-json-cleaner`
+
+## Use
+
+```javascript
+import cleanEndomondoJson from 'endomondo-json-cleaner';
+
+const dirtyJson = require('2016-04-30 22_41_52.0.json'); // load original endomondo .json file.
+const cleanJson = cleanEndomondoJson(dirtyJson);
+// => { cleaned JSON structure (see example below) }
+```
+
+## Result
 
 <table>
 <tr>
@@ -139,21 +156,3 @@ Converts Endomondo's horrible JSON structure to something more usable. Can optio
 </td>
 </tr>
 </table>
-
-## Install
-The usual way:
-
-`npm install endomondo-json-cleaner`
-
-`yarn add endomondo-json-cleaner`
-
-## Use
-
-endomondoJsonCleaner(fileContent: string | object, toCamelCase)
-
-```javascript
-import endomondoJsonCleaner from 'endomondo-json-cleaner';
-
-const dirtyJson = require('2016-04-30 22_41_52.0.json'); // load endomondo ,json file.
-const cleanJson = endomondoJsonCleaner(dirtyJson)
-```

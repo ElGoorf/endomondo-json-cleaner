@@ -1,5 +1,3 @@
-import camelcaseKeys from 'camelcase-keys';
-
 type EndomondoPointType = [
   {
     location: [[{ latitude: number }, { longitude: number }]];
@@ -69,16 +67,13 @@ type CleanEndomondoJson = {
   comments: CleanEndomondoCommentType[];
 };
 
-function fixEndomondoJson(
-  raw: EndomondoFileContent | EndomondoPointType | EndomondoCommentType,
-  toCamel: boolean,
-): CleanEndomondoJson {
+function fixEndomondoJson(raw: EndomondoFileContent | EndomondoPointType | EndomondoCommentType): CleanEndomondoJson {
   // @ts-ignore todo
-  const jsonAsJsonShouldBe = raw.reduce((acc, row) => {
+  return raw.reduce((acc, row) => {
     const [[key, value]] = Object.entries(row);
     if (key === 'location') {
       // @ts-ignore todo
-      const rawLocation = fixEndomondoJson(value[0], toCamel);
+      const rawLocation = fixEndomondoJson(value[0]);
       return {
         ...acc,
         location: rawLocation,
@@ -87,7 +82,7 @@ function fixEndomondoJson(
     if (Array.isArray(value)) {
       return {
         ...acc,
-        [key]: value.map((v) => fixEndomondoJson(v, toCamel)),
+        [key]: value.map((v) => fixEndomondoJson(v)),
       };
     }
     return {
@@ -95,13 +90,20 @@ function fixEndomondoJson(
       [key]: value,
     };
   }, {});
-
-  return toCamel ? (camelcaseKeys(jsonAsJsonShouldBe) as CleanEndomondoJson) : jsonAsJsonShouldBe;
 }
 
-function processEndomondoFileContent(fileContent: EndomondoFileContent | string, toCamelCase = false) {
+/**
+ * @summary Converts Endomondo's JSON data to a friendlier structure.
+ * @description Converts Endomondo's JSON data to a friendlier structure. Primarily this means stripping out all the unnecessary arrays.
+ *
+ * @param {(object|string)} fileContent Source file contents. Contents given as a string will automatically be parsed to json
+ * @return object fileContent converted to friendlier JSON structure. See {@link ../README.md|README} for input/output examples.
+ *
+ * @type {(fileContent: EndomondoFileContent) => CleanEndomondoJson}
+ */
+function processEndomondoFileContent(fileContent: EndomondoFileContent | string) {
   const rawJson = typeof fileContent === 'string' ? (JSON.parse(fileContent) as EndomondoFileContent) : fileContent;
-  return fixEndomondoJson(rawJson, toCamelCase);
+  return fixEndomondoJson(rawJson);
 }
 
 export default processEndomondoFileContent;
