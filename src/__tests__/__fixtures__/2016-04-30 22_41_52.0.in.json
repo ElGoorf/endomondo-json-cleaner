@@ -1,0 +1,58 @@
+[
+    {"sport": "HIKING"},
+    {"source": "TRACK_MOBILE"},
+    {"created_date": "2016-04-30 22:41:52.0"},
+    {"start_time": "2016-04-29 10:30:32.0"},
+    {"end_time": "2016-04-29 21:56:42.0"},
+    {"duration_s": 41170},
+    {"distance_km": 19.06885528564453},
+    {"calories_kcal": 3894},
+    {"altitude_min_m": 855},
+    {"altitude_max_m": 1958},
+    {"speed_avg_kmh": 1.6674248002992544},
+    {"speed_max_kmh": 29.7605},
+    {"hydration_l": 2.79814},
+    {"ascend_m": 793},
+    {"descend_m": 1284},
+    {"points": [
+        [
+            {"location": [[
+                {"latitude": 20.014289},
+                {"longitude": -76.838086}
+            ]]},
+            {"distance_km": 0},
+            {"timestamp": "Fri Apr 29 10:30:32 UTC 2016"}
+        ],
+        [
+            {"location": [[
+                {"latitude": 20.014289},
+                {"longitude": -76.838086}
+            ]]},
+            {"altitude": 1409},
+            {"distance_km": 0},
+            {"timestamp": "Fri Apr 29 10:33:23 UTC 2016"}
+        ],
+        [
+            {"location": [[
+                {"latitude": 20.014289},
+                {"longitude": -76.838086}
+            ]]},
+            {"altitude": 1409},
+            {"distance_km": 0},
+            {"speed_kmh": 0},
+            {"timestamp": "Fri Apr 29 10:36:07 UTC 2016"}
+        ]
+    ]},
+    {"comments": [
+        [
+            {"author": "Billy Bob"},
+            {"created_date": "2011-03-22 13:37:46.0"},
+            {"text": "was this running?!"}
+        ],
+        [
+            {"author": "silly Man"},
+            {"created_date": "2011-03-22 13:39:34.0"},
+            {"text": "umm no :s"}
+        ]
+    ]}
+]
