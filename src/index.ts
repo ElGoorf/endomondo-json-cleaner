@@ -67,12 +67,10 @@ type CleanEndomondoJson = {
   comments: CleanEndomondoCommentType[];
 };
 
-function fixEndomondoJson(raw: EndomondoFileContent | EndomondoPointType | EndomondoCommentType): CleanEndomondoJson {
-  // @ts-ignore todo
-  return raw.reduce((acc, row) => {
-    const [[key, value]] = Object.entries(row);
+function fixEndomondoJson(raw: any): CleanEndomondoJson {  
+  return raw.reduce((acc: any, row: any) => {
+    const [[key, value], []] = Object.entries(row);
     if (key === 'location') {
-      // @ts-ignore todo
       const rawLocation = fixEndomondoJson(value[0]);
       return {
         ...acc,
